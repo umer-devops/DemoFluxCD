@@ -1,0 +1,5 @@
+resources:
+  - "namespace.yml"
+  - "helmrepository.yml"
+  - "helmRelease.yml"
+  # - "chart.yml"
