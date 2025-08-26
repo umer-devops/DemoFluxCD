@@ -16,7 +16,17 @@ spec:
  type: oci
 
 ---
-
+apiVersion: v1
+kind: Secret
+metadata:
+  name: additional-scrape-configs
+  namespace: monitoring
+stringData:
+  additional-scrape-configs.yaml: |
+    - job_name: "external-service"
+      static_configs:
+        - targets: ["192.168.100.66:9898"]
+---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -31,3 +41,9 @@ spec:
         kind: HelmRepository
         name: prom
       interval: 1h
+  values:
+    prometheus:
+      prometheusSpec:
+        additionalScrapeConfigsSecret:
+          name: additional-scrape-configs
+          key: additional-scrape-configs.yaml
