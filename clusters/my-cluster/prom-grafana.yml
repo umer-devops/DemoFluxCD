@@ -39,7 +39,7 @@ spec:
         name: prom
       interval: 1h
   values:
-    additionalScrapeConfigsSecret:
+    additionalScrapeConfigs:
       enable: true
       name: additional-scrape-configs
       key: additional-scrape-configs.yaml
