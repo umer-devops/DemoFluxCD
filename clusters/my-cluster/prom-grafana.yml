@@ -39,5 +39,6 @@ spec:
       interval: 1h
   values:
     additionalScrapeConfigsSecret:
+      enable: true
       name: additional-scrape-configs
       key: additional-scrape-configs.yaml
