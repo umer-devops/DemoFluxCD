@@ -38,8 +38,6 @@ spec:
         name: prom
       interval: 1h
   values:
-    prometheus:
-      prometheusSpec:
-        additionalScrapeConfigsSecret:
-          name: additional-scrape-configs
-          key: additional-scrape-configs.yaml
+    additionalScrapeConfigsSecret:
+      name: additional-scrape-configs
+      key: additional-scrape-configs.yaml
