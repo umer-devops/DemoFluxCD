@@ -1,20 +1,16 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name:  monitoring
-
-
+  name: monitoring
 ---
-
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
- name: prom
- namespace: monitoring
+  name: prom
+  namespace: monitoring
 spec:
- url: oci://ghcr.io/prometheus-community/charts
- type: oci
-
+  url: oci://ghcr.io/prometheus-community/charts
+  type: oci
 ---
 apiVersion: v1
 kind: Secret
@@ -23,9 +19,9 @@ metadata:
   namespace: monitoring
 stringData:
   additional-scrape-configs.yaml: |
-    - job_name: "external-service"
+    - job_name: "podinfo"
       static_configs:
-        - targets: ["192.168.100.66:9898"]
+        - targets: ["podinfo.podinfo.svc.cluster.local:9898"]
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -44,6 +40,6 @@ spec:
   values:
     prometheus:
       prometheusSpec:
-        additionalScrapeConfigsSecret:
+        additionalScrapeConfigs:
           name: additional-scrape-configs
           key: additional-scrape-configs.yaml
