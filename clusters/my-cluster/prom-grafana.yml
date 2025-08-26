@@ -21,7 +21,7 @@ stringData:
   additional-scrape-configs.yaml: |
     - job_name: "podinfo"
       static_configs:
-        - targets: ["podinfo.podinfo.svc.cluster.local:9898"]
+        - targets: ["10.96.61.56:9898"]
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -40,6 +40,6 @@ spec:
   values:
     prometheus:
       prometheusSpec:
-        additionalScrapeConfigs:
+        additionalScrapeConfigsSecret:
           name: additional-scrape-configs
           key: additional-scrape-configs.yaml
