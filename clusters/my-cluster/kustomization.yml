@@ -1,5 +1,3 @@
 resources:
-  - "namespace.yml"
-  - "helmrepository.yml"
-  - "helmRelease.yml"
-  # - "chart.yml"
+  - "podinfo.yml"
+  - "prom-grafana.yml"
