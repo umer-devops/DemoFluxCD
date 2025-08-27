@@ -27,6 +27,25 @@ spec:
         name: prom
       interval: 1h
 ---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: loki-datasource
+  namespace: monitoring
+  labels:
+    grafana_datasource: "1"
+data:
+  loki-datasource.yaml: |-
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        type: loki
+        access: proxy
+        url: http://loki:3100    
+        isDefault: true        
+---
+
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
@@ -52,4 +71,4 @@ spec:
         namespace: monitoring
   values:
     grafana:
-      enable: false
+      enabled: false
