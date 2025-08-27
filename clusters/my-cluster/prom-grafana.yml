@@ -28,7 +28,6 @@ spec:
       interval: 1h
   values:
     grafana:
-      # Disable auto-provisioned Loki datasource from this chart
       additionalDataSources: []
 ---
 apiVersion: v1
@@ -46,7 +45,7 @@ data:
         type: loki
         access: proxy
         url: http://loki.monitoring.svc.cluster.local:3100
-        isDefault: true
+        isDefault: false
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
@@ -83,4 +82,4 @@ spec:
     loki:
       isDefault: false
     datasource:
-      enabled: false # 🚀 disables the extra "loki-loki-stack" ConfigMap
+      enabled: false
