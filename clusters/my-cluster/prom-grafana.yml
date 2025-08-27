@@ -71,3 +71,6 @@ spec:
   values:
     grafana:
       enabled: false
+    loki:
+      datasources:
+        enabled: false
