@@ -45,7 +45,7 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: kube-ops/loki
+      chart: loki
       sourceRef:
         kind: HelmRepository
         name: loki
