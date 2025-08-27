@@ -30,10 +30,12 @@ spec:
     grafana:
       enabled: true
       image:
-        tag: 11.2.0
+        tag: 8.4.2
 
     loki:
       isDefault: false
+      image:
+        tag: 2.6.1
     prometheus:
       enabled: true
       alertmanager:
