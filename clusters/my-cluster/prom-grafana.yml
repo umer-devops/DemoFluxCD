@@ -57,3 +57,5 @@ spec:
       enabled: true
     loki:
       isDefault: false
+    prometheus:
+      enabled: true
