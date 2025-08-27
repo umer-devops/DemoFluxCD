@@ -33,7 +33,7 @@ metadata:
   name: loki
   namespace: monitoring
 spec:
-  url: https://charts.kube-ops.io
+  url: https://charts.kube-ops.io/kube-ops
   interval: 1h
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
