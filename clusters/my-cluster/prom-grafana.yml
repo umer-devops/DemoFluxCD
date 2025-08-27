@@ -29,7 +29,16 @@ spec:
   values:
     grafana:
       enabled: true
+      image:
+        tag: 2.6.1
+
     loki:
       isDefault: false
     prometheus:
       enabled: true
+      alertmanager:
+        persistentVolume:
+          enabled: false
+      server:
+        persistentVolume:
+          enabled: false
