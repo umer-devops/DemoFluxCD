@@ -30,7 +30,7 @@ spec:
   values:
     sidecar:
       datasources:
-      - name: "Loki"
+        name: "Loki"
         type: loki
         uid: loki
         url: http://loki:3100
