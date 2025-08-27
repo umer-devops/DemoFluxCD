@@ -30,29 +30,23 @@ spec:
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: grafana
+  name: loki
   namespace: monitoring
 spec:
-  url: https://grafana.github.io/helm-charts
+  url: https://charts.kube-ops.io
   interval: 1h
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: loki-stack
+  name: loki
   namespace: monitoring
 spec:
   interval: 1m
   chart:
     spec:
-      chart: loki-stack
+      chart: kube-ops/loki
       sourceRef:
         kind: HelmRepository
-        name: grafana
+        name: loki
         namespace: monitoring
-      # version: 2.10.2 # <-- pin to a version if you want stability?
-  values:
-    grafana:
-      enabled: true
-    promtail:
-      enabled: true
