@@ -25,6 +25,9 @@ spec:
         kind: HelmRepository
         name: prom
       interval: 1m
+  values:
+    grafana:
+      enabled: false
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
@@ -51,6 +54,6 @@ spec:
         namespace: monitoring
   values:
     grafana:
-      enabled: false
+      enabled: true
     loki:
       isDefault: false
