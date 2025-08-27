@@ -33,7 +33,7 @@ metadata:
   name: loki
   namespace: monitoring
 spec:
-  url: https://charts.kube-ops.io/kube-ops
+  url: https://grafana.github.io/helm-charts
   interval: 1h
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
@@ -45,8 +45,11 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: loki
+      chart: loki-stack
       sourceRef:
         kind: HelmRepository
         name: loki
         namespace: monitoring
+  values:
+    grafana:
+      enable: false
