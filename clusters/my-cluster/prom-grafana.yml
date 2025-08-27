@@ -11,9 +11,7 @@ metadata:
 spec:
   url: oci://ghcr.io/prometheus-community/charts
   type: oci
-  interval:
-
-
+  interval: 1m
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
