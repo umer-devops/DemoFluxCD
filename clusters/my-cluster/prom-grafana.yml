@@ -11,7 +11,9 @@ metadata:
 spec:
   url: oci://ghcr.io/prometheus-community/charts
   type: oci
-  interval: 1h
+  interval:
+
+
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
@@ -27,14 +29,6 @@ spec:
         kind: HelmRepository
         name: prom
       interval: 1h
-  values:
-    prometheus:
-      enabled: true
-    alertmanager:
-      enabled: true
-    grafana:
-      enabled: true
-      additionalDataSources: [] # Flux/Grafana sidecar will pick up our ConfigMap automatically
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -78,10 +72,4 @@ spec:
         namespace: monitoring
   values:
     grafana:
-      enabled: false
-    prometheus:
-      enabled: false
-    promtail:
-      enabled: true
-    test_pod:
       enabled: false
