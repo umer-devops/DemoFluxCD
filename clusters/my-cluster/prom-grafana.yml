@@ -27,15 +27,15 @@ spec:
         kind: HelmRepository
         name: prom
       interval: 1h
-  # values:
-  #   sidecar:
-  #     datasources:
-  #       name: "Loki"
-  #       type: loki
-  #       uid: loki
-  #       url: http://loki:3100
-  #       access: proxy
-  #       isDefault: false
+  values:
+    sidecar:
+      datasources:
+        name: "Loki"
+        type: loki
+        uid: loki
+        url: http://loki:3100
+        access: proxy
+        isDefault: false
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
