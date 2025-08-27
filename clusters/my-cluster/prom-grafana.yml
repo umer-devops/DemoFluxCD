@@ -30,7 +30,7 @@ spec:
     grafana:
       enabled: true
       image:
-        tag: 2.6.1
+        tag: 11.2.0
 
     loki:
       isDefault: false
