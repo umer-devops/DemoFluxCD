@@ -27,23 +27,14 @@ spec:
         kind: HelmRepository
         name: prom
       interval: 1h
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: loki-datasource
-  namespace: monitoring
-  labels:
-    grafana_datasource: "1"
-data:
-  loki-datasource.yaml: |-
-    apiVersion: 1
+  values:
     datasources:
-      - name: Loki
-        type: loki
-        access: proxy
-        url: http://loki.monitoring.svc.cluster.local:3100
-        isDefault: false
+    - name: "Loki"
+      type: loki
+      uid: loki
+      url: http://loki.monitoring:3100
+      access: proxy
+      isDefault: false
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
