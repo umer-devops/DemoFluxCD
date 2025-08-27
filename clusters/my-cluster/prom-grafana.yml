@@ -26,8 +26,11 @@ spec:
         kind: HelmRepository
         name: prom
       interval: 1h
+  values:
+    grafana:
+      # Disable auto-provisioned Loki datasource from this chart
+      additionalDataSources: []
 ---
-
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -42,10 +45,9 @@ data:
       - name: Loki
         type: loki
         access: proxy
-        url: http://loki.monitoring.svc.cluster.local:3100    
-        isDefault: true        
+        url: http://loki.monitoring.svc.cluster.local:3100
+        isDefault: true
 ---
-
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
@@ -72,3 +74,13 @@ spec:
   values:
     grafana:
       enabled: false
+    prometheus:
+      enabled: false
+    promtail:
+      enabled: true
+    test_pod:
+      enabled: false
+    loki:
+      isDefault: false
+    datasource:
+      enabled: false # 🚀 disables the extra "loki-loki-stack" ConfigMap
