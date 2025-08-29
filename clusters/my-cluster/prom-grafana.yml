@@ -31,14 +31,7 @@ spec:
       enabled: true
 
     loki:
-      isDefault: false
       image:
         tag: 2.6.1
     prometheus:
       enabled: true
-      alertmanager:
-        persistentVolume:
-          enabled: false
-      server:
-        persistentVolume:
-          enabled: false
