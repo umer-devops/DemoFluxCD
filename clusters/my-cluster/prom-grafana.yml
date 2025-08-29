@@ -33,5 +33,26 @@ spec:
     loki:
       image:
         tag: 2.6.1
+
     prometheus:
       enabled: true
+
+    promtail:
+      enabled: true
+      config:
+        scrape_configs:
+        - job_name: kubernetes-pods-podinfo
+          kubernetes_sd_configs:
+          - role: pod
+            namespaces:
+              names:
+              - podinfo
+          pipeline_stages:
+          - docker: {}
+          relabel_configs:
+          - source_labels: [ __meta_kubernetes_namespace ]
+            target_label: namespace
+          - source_labels: [ __meta_kubernetes_pod_name ]
+            target_label: pod
+          - source_labels: [ __meta_kubernetes_container_name ]
+            target_label: container
