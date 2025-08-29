@@ -29,8 +29,6 @@ spec:
   values:
     grafana:
       enabled: true
-      image:
-        tag: 8.4.2
 
     loki:
       isDefault: false
