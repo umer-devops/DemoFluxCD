@@ -33,6 +33,9 @@ spec:
     loki:
       image:
         tag: 2.6.1
+      service:
+        type: NodePort
+        nodePort: 31100
 
     prometheus:
       enabled: true
