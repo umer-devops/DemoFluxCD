@@ -40,40 +40,24 @@ spec:
     promtail:
       enabled: true
       config:
-        enabled: true
-        snippets:
-          extraScrapeConfigs: |
-            - job_name: kubernetes-pods-podinfo
-              kubernetes_sd_configs:
-                - role: pod
-                  namespaces:
-                    names: ["podinfo"]
-              pipeline_stages:
-                - cri: {}
-              relabel_configs:
-                - action: keep
-                  source_labels: [__meta_kubernetes_pod_phase]
-                  regex: Running
-                - action: replace
-                  source_labels: [__meta_kubernetes_namespace]
-                  target_label: namespace
-                - action: replace
-                  source_labels: [__meta_kubernetes_pod_name]
-                  target_label: pod
-                - action: replace
-                  source_labels: [__meta_kubernetes_pod_container_name]
-                  target_label: container
-                - action: replace
-                  replacement: /var/log/pods/*$1/*.log
-                  separator: /
-                  source_labels: [__meta_kubernetes_pod_uid, __meta_kubernetes_pod_container_name]
-                  target_label: __path__
-                - action: replace
-                  replacement: /var/log/pods/*$1/*.log
-                  regex: true/(.*)
-                  separator: /
-                  source_labels:
-                    - __meta_kubernetes_pod_annotationpresent_kubernetes_io_config_hash
-                    - __meta_kubernetes_pod_annotation_kubernetes_io_config_hash
-                    - __meta_kubernetes_pod_container_name
-                  target_label: __path__
+        scrape_configs:
+        - job_name: kubernetes-pods
+          kubernetes_sd_configs:
+          - role: pod
+          pipeline_stages:
+          - cri: {}
+          relabel_configs:
+          - action: replace
+            source_labels: [ __meta_kubernetes_namespace ]
+            target_label: namespace
+          - action: replace
+            source_labels: [ __meta_kubernetes_pod_name ]
+            target_label: pod
+          - action: replace
+            source_labels: [ __meta_kubernetes_pod_container_name ]
+            target_label: container
+          - action: replace
+            replacement: /var/log/pods/*$1/*.log
+            separator: /
+            source_labels: [ __meta_kubernetes_pod_uid, __meta_kubernetes_pod_container_name ]
+            target_label: __path__
